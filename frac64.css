@@ -1,0 +1,55 @@
+@import url(http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic);
+
+body {
+	font-family: Lora;
+	background-color: #EFE0B9;
+}
+
+h1, h2, h3, h4 {
+	font-family: "Source Sans Pro";
+}
+
+h1 {
+	letter-spacing: -5px;
+	font-weight: 700;
+	font-size: 128px;
+}
+
+h2 {
+	font-size: 32px;
+}
+
+page {
+	display: block;
+	padding-left: 4cm;
+	width: 640px;
+	padding-right: 2cm;
+}
+
+pre code, code {
+	font-family: "Source Code Pro";
+	font-style: normal;
+}
+
+table.bit64 {
+	border-spacing: 0;
+	border-padding: 0;
+	border-collapse: collapse;
+}
+table.bit64 td {
+	border: 2px solid black;
+	background-color: #E4B04A;
+	text-align: center;
+	font-family: "Source Sans Pro";
+	font-style: italic;
+}
+table.bit64 th {
+	font-weight: normal;
+}
+
+strong {
+	font-family: "Source Sans Pro";
+}	
+
