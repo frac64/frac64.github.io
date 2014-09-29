@@ -40,7 +40,7 @@ The numerator is in the high order end, the denominator in the low order end.
 </tr>
 <tr>
 	<td width='320px' colspan="2">numerator</td>
-	<td width='10px'><code>0</code></td>
+	<td width='10px' style="border-right: 1px dashed black;"><code>0</code></td>
 	<td width='310px' colspan="2">denominator</td>
 </tr>
 </table>
