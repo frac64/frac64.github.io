@@ -8,7 +8,7 @@ title:  "64 bit Fraction Numbers"
 ## Overview
 **FRAC64** is a fraction number type. It can represent any signed fractions 
 where numerator and denominator are in the range of signed 32bit integers, that
-is the range from -(2<sup>31</sup>) to 2<sup>31</sup> or analogous 
+is the range from -(2<sup>31</sup>) to 2<sup>31</sup>-1 or analogous 
 −2,147,483,648 to 2,147,483,647. Thereby the smallest representable absolute 
 value is 1/2,147,483,647, the largest positive integer number is 2,147,483,647,
 the largest negative integer number is −2,147,483,648.
@@ -52,24 +52,24 @@ the absence of fraction specific processor instructions on the basis of signed
 64bit and 32bit integer arithmetic. It can be added to or on top of all languages
 and target architectures that provide this common arithmetic operations/types.
 
-**FRAC64**  fraction numbers become _primitives_ with the benefits to 
-computation speed and compact storage.
+**FRAC64** fraction numbers are _primitive_ values usually located on the stack
+what benefits computation speed and goes along with compact storage of large
+quantities of values.
 
-### Additon
+### Additon & Subtraction
 
+### Multiplication & Division
 
-
-### Subtraction
-
-
-### Division
+### Cancellation
 
 ### NaN
 anything with a denominator of zero is NaN
 
-### Reciprocal
+### Further Arithmetic
 
-### Cancellation
+#### Reciprocal
+
+#### Hashing
 
 ### Conversion to DEC64
 
