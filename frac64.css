@@ -4,7 +4,9 @@
 
 body {
 	font-family: Lora;
-	background-color: rgba(249, 225, 198, 1);
+	background-color: rgba(235, 225, 198, 1);
+	border-left: 15px solid #c3ccd1;
+	margin-left: 15px;
 }
 
 h1, h2, h3, h4 {
