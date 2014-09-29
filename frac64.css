@@ -4,7 +4,7 @@
 
 body {
 	font-family: Lora;
-	background-color: #EFE0B9;
+	background-color: rgba(249, 225, 198, 1);
 }
 
 h1, h2, h3, h4 {
@@ -40,13 +40,14 @@ table.bit64 {
 }
 table.bit64 td {
 	border: 2px solid black;
-	background-color: #E4B04A;
+	background-color: rgba(194, 144, 105, 1);
 	text-align: center;
 	font-family: "Source Sans Pro";
 	font-style: italic;
 }
 table.bit64 th {
 	font-weight: normal;
+	font-size: 75%;
 }
 
 strong {
