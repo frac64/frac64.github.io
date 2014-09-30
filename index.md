@@ -17,8 +17,8 @@ the largest negative integer number is `−2,147,483,648`.
 **FRAC64** provides a special `NaN` (not a number) value to constitute values
 that cannot be expressed correctly or that are in fact not a number like 
 any fraction with a denominator of zero. Overflows and underflows result in 
-special `NaN` that indicate the type of error. All numerical values are 
-therefore correct from the mathematical standpoint. 
+special `NaN` that indicate the type of error. Any value is either a 
+mathematically correct number or `NaN`.
 
 ## Representation
 
@@ -48,10 +48,11 @@ The numerator is in the high order end, the denominator in the low order end.
 
 ## Implementation
 
-**FRAC64** allows efficient computations of all basic arithmetic operations in
-the absence of fraction specific processor instructions on the basis of signed
-64bit and 32bit integer arithmetic. It can be added to or on top of all languages
-and target architectures that provide this common arithmetic operations/types.
+**FRAC64** allows efficient computations of all basic arithmetic operations (in
+the absence of fraction specific processor instructions) on the basis of signed
+64bit and 32bit integer arithmetic. It can be added to or on top of all 
+languages and target architectures that provide this common arithmetic 
+operations/types.
 
 **FRAC64** is a reinterpretation of signed 64bit integers, this implies that
 single values avoid heap allocation, multiple values can be stored efficiently 
