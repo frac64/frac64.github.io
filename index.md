@@ -58,7 +58,30 @@ operations/types.
 single values avoid heap allocation, multiple values can be stored efficiently 
 in arrays without record header or pointer overheads. 
 
-### Additon & Subtraction
+To extract the numerator shift the fraction left by 32.
+
+		numerator = fraction >> 32
+
+To extract the denominator truncate the 32bits at the higher order end by a 
+special 32bit load instruction or logical AND with an appropriate mask. 
+
+		denominator = fraction & 0x00000000FFFFFFFF
+
+Another alternative is to shift the fraction up and down by 32 bits.
+
+		denominator = (fraction << 32) >> 32
+
+### Addition & Subtraction
+As fractions are signed addition and subtraction are similar cases.
+
+There is a fast path for addition/subtraction of fractions with same denominator,
+what is e.g. the case when adding whole numbers represented as fractions.
+
+		sum = a + b - denominator(a)
+
+The two fractions are added as 64bit integers, the common denominator
+(that has been _doubled_ while adding) is subtracted again.
+
 
 ### Multiplication & Division
 

@@ -4,17 +4,19 @@
 
 body {
 	font-family: Lora;
-	background-color: #F9D0AD;
+	background-color: #EEDDC0;
 }
 
 h1, h2, h3, h4 {
-	font-family: "Source Sans Pro";
+	font-family: "Source Code Pro";
 }
 
 h1 {
 	letter-spacing: -5px;
 	font-weight: 700;
 	font-size: 128px;
+	font-family: "Source Sans Pro";
+	color: black;
 }
 
 h2 {
@@ -31,6 +33,14 @@ page {
 pre code, code {
 	font-family: "Source Code Pro";
 	font-style: normal;
+}
+
+pre  {
+	color: black;
+	background-color: white;
+	border-radius: 4px;
+	width: 90%;
+	margin: 0 5%;
 }
 
 table.bit64 {
