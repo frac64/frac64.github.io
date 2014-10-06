@@ -56,7 +56,7 @@ operations/types.
 
 **FRAC64** is a reinterpretation of signed 64bit integers, this implies that
 single values avoid heap allocation, multiple values can be stored efficiently 
-in arrays without record header or pointer overheads. 
+in arrays without record or object headers or pointer overheads. 
 
 To extract the numerator shift the fraction left by 32.
 
@@ -71,32 +71,58 @@ Another alternative is to shift the fraction up and down by 32 bits.
 
 		denominator = (fraction << 32) >> 32
 
+For the four basic arithmetic operations composition and decomposition 
+make an _overhead_ of 6 shift or logic instructions that usually take a single 
+ALU cycle each. In case the target CPU instruction set has special load/store 
+instructions for upper and lower 32bit of a 64bit register the _overhead_ is
+expected to be 1 or 2 single cycle ALU instructions.
+
 ### Addition & Subtraction
 As fractions are signed addition and subtraction are similar cases.
 
 There is a fast path for addition/subtraction of fractions with same denominator,
-what is e.g. the case when adding whole numbers represented as fractions.
+as it is the case for adding whole numbers represented as fractions.
 
 		sum = a + b - denominator(a)
 
-The two fractions are added as 64bit integers, the common denominator
-(that has been _doubled_ while adding) is subtracted again.
+The two fractions `a` and `b` are added as 64bit integers, the common 
+denominator (that has been added twice by the addition) is subtracted again.
+The less obvious but major benefit of the fast path is that it can cope without 
+aggressive cancellation.
 
+Fractions with different denominator are decomposed, the usual arithmetic of
+multiplying numerator and denominator cross-over before adding the resulting 
+numerators is done and the fraction is recomposed again.
 
 ### Multiplication & Division
+Both multiplication and division require the two multiplications of numerator 
+and denominator integers that are usual for fraction math. 
+The parts have to be decomposed and recomposed to a fraction result as 
+described earlier.
 
 ### Cancellation
+**FRAC64** arithmetic uses 64bit integer instructions with decomposed inputs 
+that are always known to use only 32 respective 31 bit what makes sure all 
+in-between results be in range of the used type. Through cancellation large
+intermediate results might become representable again. 
+
+It is advisable to always cancel results as soon they are based on 
+multiplication(s) as numerator and denominator will accumulate quickly otherwise
+and become unrepresentative with a growing number of arithmetic operations done.
+This is a general problem of fraction arithmetic that has to be dealt with.
+
+Unfortunately a cancellation requires non-trivial arithmetic. Usually the GCD 
+(greatest common divisor) is computed. While there is a binary GCD algorithm
+that is based on logic operations and subtraction within loops any non-trivial
+cancellation will require at least two 32bit divisions in addition to the GCD.
+The instructions resulting from these steps will clearly dominate the cost of 
+any arithmetic operation followed by a cancellation. 
+However, this price comes with the concept of fractions and is only specific to 
+the representation in that numerator and denominator have a range of 32bit to 
+operate within. 
 
 ### NaN
 anything with a denominator of zero is NaN
-
-### Further Arithmetic
-
-#### Reciprocal
-
-#### Hashing
-
-#### Conversion to DEC64
 
 ## Visualisation
 
