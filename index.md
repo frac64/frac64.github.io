@@ -58,24 +58,26 @@ operations/types.
 single values avoid heap allocation, multiple values can be stored efficiently 
 in arrays without record or object headers or pointer overheads. 
 
+CPU instruction sets with unaligned load/store instructions might support to
+decompose numerator and denominator by special load instructions. 
+
+In the absence of special load instructions a single logic operation can be used.
 To extract the numerator shift the fraction left by 32.
 
 		numerator = fraction >> 32
 
 To extract the denominator truncate the 32bits at the higher order end by a 
-special 32bit load instruction or logical AND with an appropriate mask. 
+logical AND with an appropriate mask or by shifting the fraction up and down 
+by 32 bits
 
 		denominator = fraction & 0x00000000FFFFFFFF
-
-Another alternative is to shift the fraction up and down by 32 bits.
-
 		denominator = (fraction << 32) >> 32
 
-For the four basic arithmetic operations composition and decomposition 
-make an _overhead_ of 6 shift or logic instructions that usually take a single 
-ALU cycle each. In case the target CPU instruction set has special load/store 
-instructions for upper and lower 32bit of a 64bit register the _overhead_ is
-expected to be 1 or 2 single cycle ALU instructions.
+Than the _overhead_ of composition and decomposition is usually that of 6 shift 
+or logic instructions (that usually take a single ALU cycle each) for all of the 
+four basic arithmetic operations. 
+In case the CPU's instruction set has unaligned load/store instructions the 
+_overhead_ is presumably 1 or 2 single cycle ALU instructions.
 
 ### Addition & Subtraction
 As fractions are signed addition and subtraction are similar cases.
