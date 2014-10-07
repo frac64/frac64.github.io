@@ -73,11 +73,11 @@ by 32 bits.
 		denominator = fraction & 0x00000000FFFFFFFF
 		denominator = (fraction << 32) >> 32
 
-Than the _overhead_ of composition and decomposition is usually that of 6 shift 
-or logic instructions (that usually take a single processor cycle each) for all 
-of the four basic arithmetic operations. 
+In the general case the _overhead_ of composition and decomposition is usually 
+that of 6 shift or logic instructions (that usually take a single processor cycle 
+each) for all of the four basic arithmetic operations. 
 In case the CPU's instruction set has unaligned load/store instructions the 
-_overhead_ is presumably 1 or 2 single cycle ALU instructions.
+_overhead_ is presumably 1 or 2 single cycle instructions.
 
 ### Addition & Subtraction
 As fractions are signed addition and subtraction are similar cases.
