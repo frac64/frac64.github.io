@@ -62,20 +62,20 @@ CPU instruction sets with unaligned load/store instructions might support to
 decompose numerator and denominator by special load instructions. 
 
 In the absence of special load instructions a single logic operation can be used.
-To extract the numerator shift the fraction left by 32.
+To extract the numerator right shift the fraction by 32 bits.
 
 		numerator = fraction >> 32
 
-To extract the denominator truncate the 32bits at the higher order end by a 
-logical AND with an appropriate mask or by shifting the fraction up and down 
-by 32 bits
+To extract the denominator truncate the higher order end 32bits by a logical 
+AND with an appropriate mask or by shifting the fraction first left then right 
+by 32 bits.
 
 		denominator = fraction & 0x00000000FFFFFFFF
 		denominator = (fraction << 32) >> 32
 
 Than the _overhead_ of composition and decomposition is usually that of 6 shift 
-or logic instructions (that usually take a single ALU cycle each) for all of the 
-four basic arithmetic operations. 
+or logic instructions (that usually take a single processor cycle each) for all 
+of the four basic arithmetic operations. 
 In case the CPU's instruction set has unaligned load/store instructions the 
 _overhead_ is presumably 1 or 2 single cycle ALU instructions.
 
