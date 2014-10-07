@@ -105,26 +105,26 @@ described earlier.
 ### Cancellation
 **FRAC64** arithmetic uses 64bit integer instructions with decomposed inputs 
 that are always known to use only 32 respective 31 bit what makes sure all 
-in-between results be in range of the used type. Through cancellation large
-intermediate results might become representable again. 
+in-between results are in range of 64bit register width. 
+Through cancellation large intermediate results might become representable again. 
 
-It is advisable to always cancel results as soon they are based on 
+It is advisable to always cancel results as soon as they are based on 
 multiplication(s) as numerator and denominator will accumulate quickly otherwise
-and become unrepresentative with a growing number of arithmetic operations done.
+and become unrepresentable with a growing number of arithmetic operations chained.
 This is a general problem of fraction arithmetic that has to be dealt with.
 
 Unfortunately a cancellation requires non-trivial arithmetic. Usually the GCD 
-(greatest common divisor) is computed. While there is a binary GCD algorithm
+(greatest common divisor) is computed. While there is a [binary GCD algorithm](http://en.wikipedia.org/wiki/Binary_GCD_algorithm)
 that is based on logic operations and subtraction within loops any non-trivial
 cancellation will require at least two 32bit divisions in addition to the GCD.
 The instructions resulting from these steps will clearly dominate the cost of 
-any arithmetic operation followed by a cancellation. 
+any basic arithmetic operation completed with a cancellation. 
 However, this price comes with the concept of fractions and is only specific to 
-the representation in that numerator and denominator have a range of 32bit to 
+this representation in that numerator and denominator have a range of 32bit to 
 operate within. 
 
 ### NaN
-anything with a denominator of zero is NaN
+..(anything with a denominator of zero is NaN)
 
 ## Visualisation
 
