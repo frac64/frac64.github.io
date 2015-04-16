@@ -122,8 +122,22 @@ the representation in that numerator and denominator have a range of 32bit to
 operate within. 
 
 ### NaN
-anything with a denominator of zero is NaN
+Anything with a denominator of zero is NaN. The numerator could be used to 
+encode the kind of arithmetic error that occurred.
 
 ## Visualisation
+To keep things simple a fraction is always shown as it is stored: with signed
+numerator and unsigned denominator:. 
+
+		-1/2
+		5/8
+
+In case of whole numbers (denominator is 1) the fraction might be shown as:
+
+		-1
+		42
 
 ## Motivation
+There does not seamed to be a standard for representing fractions using a
+64-bit numbers. Yet it is important to have real _primitives_ to match 
+computational performance of common math. 

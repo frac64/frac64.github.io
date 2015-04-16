@@ -1,33 +1,22 @@
+@import url(http://fonts.googleapis.com/css?family=Vidaloka:400italic,400);
 @import url(http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic);
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700);
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic);
 
 body {
 	font-family: Lora;
-	background-color: #EEDDC0;
+	width: 580px;
+	margin: 0 auto;
+	padding: 0 0 2em 0;
 }
 
-h1, h2, h3, h4 {
-	font-family: "Source Code Pro";
-}
-
-h1 {
-	letter-spacing: -5px;
-	font-weight: 700;
-	font-size: 128px;
-	font-family: "Source Sans Pro";
-	color: black;
-}
-
-h2 {
-	font-size: 32px;
-}
+h1, h2, h3, h4 { font-family: Vidaloka; color: black; }
+h1 { font-size: 128px; font-weight: 700; letter-spacing: -5px; }
+h2 { font-size: 1.75em; margin-top: 3em; }
+h3 { font-size: 1.5em; margin-top: 2em; }
 
 page {
 	display: block;
-	padding-left: 4cm;
-	width: 640px;
-	padding-right: 2cm;
 }
 
 pre code, code {
@@ -39,9 +28,9 @@ pre  {
 	color: black;
 	background-color: white;
 	border-radius: 4px;
-	width: 90%;
-	margin: 0 5%;
+	margin: 0;
 }
+p { line-height: 1.4; }
 
 table.bit64 {
 	border-spacing: 0;
@@ -50,7 +39,6 @@ table.bit64 {
 }
 table.bit64 td {
 	border: 2px solid black;
-	background-color: #C3CCD1;
 	text-align: center;
 	font-family: "Source Sans Pro";
 	font-style: italic;
@@ -61,6 +49,6 @@ table.bit64 th {
 }
 
 strong {
-	font-family: "Source Sans Pro";
+	font-family: "Source Sans Pro", sans-serif;
 }	
 
