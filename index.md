@@ -58,24 +58,26 @@ operations/types.
 single values avoid heap allocation, multiple values can be stored efficiently 
 in arrays without record or object headers or pointer overheads. 
 
-To extract the numerator shift the fraction left by 32.
+CPU instruction sets with unaligned load/store instructions might support to
+decompose numerator and denominator by special load instructions. 
+
+In the absence of special load instructions a single logic operation can be used.
+To extract the numerator right shift the fraction by 32 bits.
 
 		numerator = fraction >> 32
 
-To extract the denominator truncate the 32bits at the higher order end by a 
-special 32bit load instruction or logical AND with an appropriate mask. 
+To extract the denominator truncate the higher order end 32bits by a logical 
+AND with an appropriate mask or by shifting the fraction first left then right 
+by 32 bits.
 
 		denominator = fraction & 0x00000000FFFFFFFF
-
-Another alternative is to shift the fraction up and down by 32 bits.
-
 		denominator = (fraction << 32) >> 32
 
-For the four basic arithmetic operations composition and decomposition 
-make an _overhead_ of 6 shift or logic instructions that usually take a single 
-ALU cycle each. In case the target CPU instruction set has special load/store 
-instructions for upper and lower 32bit of a 64bit register the _overhead_ is
-expected to be 1 or 2 single cycle ALU instructions.
+In the general case the _overhead_ of composition and decomposition is usually 
+that of 6 shift or logic instructions (that usually take a single processor cycle 
+each) for all of the four basic arithmetic operations. 
+In case the CPU's instruction set has unaligned load/store instructions the 
+_overhead_ is presumably 1 or 2 single cycle instructions.
 
 ### Addition & Subtraction
 As fractions are signed addition and subtraction are similar cases.
@@ -103,22 +105,22 @@ described earlier.
 ### Cancellation
 **FRAC64** arithmetic uses 64bit integer instructions with decomposed inputs 
 that are always known to use only 32 respective 31 bit what makes sure all 
-in-between results be in range of the used type. Through cancellation large
-intermediate results might become representable again. 
+in-between results are in range of 64bit register width. 
+Through cancellation large intermediate results might become representable again. 
 
-It is advisable to always cancel results as soon they are based on 
+It is advisable to always cancel results as soon as they are based on 
 multiplication(s) as numerator and denominator will accumulate quickly otherwise
-and become unrepresentative with a growing number of arithmetic operations done.
+and become unrepresentable with a growing number of arithmetic operations chained.
 This is a general problem of fraction arithmetic that has to be dealt with.
 
 Unfortunately a cancellation requires non-trivial arithmetic. Usually the GCD 
-(greatest common divisor) is computed. While there is a binary GCD algorithm
+(greatest common divisor) is computed. While there is a [binary GCD algorithm](http://en.wikipedia.org/wiki/Binary_GCD_algorithm)
 that is based on logic operations and subtraction within loops any non-trivial
 cancellation will require at least two 32bit divisions in addition to the GCD.
 The instructions resulting from these steps will clearly dominate the cost of 
-any arithmetic operation followed by a cancellation. 
+any basic arithmetic operation completed with a cancellation. 
 However, this price comes with the concept of fractions and is only specific to 
-the representation in that numerator and denominator have a range of 32bit to 
+this representation in that numerator and denominator have a range of 32bit to 
 operate within. 
 
 ### NaN
