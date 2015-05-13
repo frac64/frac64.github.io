@@ -14,6 +14,7 @@ h1, h2, h3, h4 { font-family: Vidaloka; color: black; }
 h1 { font-size: 128px; font-weight: 700; letter-spacing: -5px; }
 h2 { font-size: 1.75em; margin-top: 3em; }
 h3 { font-size: 1.5em; margin-top: 2em; }
+h1 { text-align: center; }
 
 page {
 	display: block;
